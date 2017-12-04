@@ -32,6 +32,7 @@ gem 'faker'
 gem 'paperclip', '~> 4.1'
 gem 'rails_admin'
 gem 'socialization'
+gem 'rest-client'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
