@@ -1,14 +1,9 @@
 class Order < ApplicationRecord
 
-  belongs_to :user
-
   has_many :order_items
   before_save :update_total
   before_create :update_status
 
-  validates :status, :presence => true
-  validates :user_id, :presence => true
-  validates :total_price, :presence => true
 
   def calculate_total
     self.order_items.collect { |item| item.product.price * item.quantity }.sum
