@@ -33,6 +33,7 @@ gem 'paperclip', '~> 4.1'
 gem 'rails_admin'
 gem 'socialization'
 gem 'rest-client'
+gem 'stripe'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -52,6 +53,7 @@ group :development, :test do
   gem 'capybara'
   gem "factory_bot_rails", "~> 4.0"
   gem 'simplecov', require: false
+  gem 'dotenv-rails'
 end
 
 group :development do
