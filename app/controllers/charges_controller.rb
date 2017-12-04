@@ -1,10 +1,11 @@
 class ChargesController < ApplicationController
+  before_action :amount_to_be_charged, :set_description
+
+
   def new
   end
 
   def create
-    @amount = 500
-
     customer = StripeTool.create_customer(email: params[:stripeEmail],
                                           stripe_token: params[:stripeToken])
 
@@ -16,4 +17,15 @@ class ChargesController < ApplicationController
     flash[:error] = e.message
     redirect_to new_charge_path
   end
+
+
+
+  private
+    def amount_to_be_charged
+      @amount = 6000
+    end
+
+    def set_description
+      @description = "Some amazing product"
+    end
 end
