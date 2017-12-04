@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
   before_action :amount_to_be_charged, :set_description
+  before_action :authenticate_user!
 
 
   def new
