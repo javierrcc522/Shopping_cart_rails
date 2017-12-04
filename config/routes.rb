@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'charges/new'
 
   get 'charges/create'
+  
+  get 'thanks', to: 'charges#thanks', as: 'thanks'
 
   devise_for :users
 
