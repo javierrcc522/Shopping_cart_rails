@@ -34,6 +34,8 @@ gem 'rails_admin'
 gem 'socialization'
 gem 'rest-client'
 gem 'stripe'
+gem "font-awesome-rails"
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
