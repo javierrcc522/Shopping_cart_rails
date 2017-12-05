@@ -14,7 +14,7 @@ class ChargesController < ApplicationController
                                           stripe_token: params[:stripeToken])
 
     charge = StripeTool.create_charge(customer_id: customer.id,
-                                      amount: @amount.round,
+                                      amount: (@amount.round) * 100,
                                       description: @description)
 
   redirect_to thanks_path
