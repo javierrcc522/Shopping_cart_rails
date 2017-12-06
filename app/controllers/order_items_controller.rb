@@ -15,9 +15,11 @@ class OrderItemsController < ApplicationController
     if @order.save
       session[:order_id] = @order.id
         flash[:notice] = "This product has been added to your order."
+      redirect_to root_path
     else
       flash[:notice] = "There were some errors"
-    end    
+      redirect_to root_path
+    end
   end
 
   def update
