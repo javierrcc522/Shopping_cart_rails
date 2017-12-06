@@ -22,17 +22,24 @@ class OrderItemsController < ApplicationController
     end
   end
 
-  def update
-    @item = @order.order_items.find(params[:id])
-    @order = current_order
-    @item.update_attribute(:quantity)
-  end
+  # def update
+  #   @item = @order.order_items.find(params[:id])
+  #   @order = current_order
+  #   @item.update_attribute(:quantity)
+  # end
 
   def destroy
     @order = current_order
     @item = @order.order_items.find(params[:id])
     @item.destroy
-    @order.save
+    if @order.save
+      session[:order_id] = @order.id
+        flash[:notice] = "This product has been removed from your order."
+      redirect_to cart_path
+    else
+      flash[:notice] = "There were some errors"
+      redirect_to cart_path
+    end
   end
 
   private
