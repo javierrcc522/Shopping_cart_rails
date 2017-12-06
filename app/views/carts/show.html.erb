@@ -4,8 +4,14 @@
   <% @order_items.each do |item| %>
     <p><%= item.product.name %> | <%= link_to "Delete", order_item_path(item), :data => {:confirm => "You sure?", :method => "delete"} %></p>
     <p> Unit Price: <%= number_to_currency item.product.price %> | Quantity: <%= item.quantity %>
-       <i class="fa fa-plus-circle" aria-hidden="true"></i>
-       <i class="fa fa-minus-circle" aria-hidden="true"></i>
+      <%= button_tag type: 'submit', class: 'cart_quantity_button' do %>
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      <% end %>
+
+      <%= button_tag type: 'submit', class: 'cart_quantity_button' do %>
+        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+      <% end %>
+
        | Total Price: <%= number_to_currency (item.product.price * item.quantity) %>
     </p>
   <% end %>

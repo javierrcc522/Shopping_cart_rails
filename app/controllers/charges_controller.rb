@@ -16,7 +16,7 @@ class ChargesController < ApplicationController
     charge = StripeTool.create_charge(customer_id: customer.id,
                                       amount: (@amount.round) * 100,
                                       description: @description)
-
+  current_order.update(:status => 'pending')                                   
   redirect_to thanks_path
   rescue Stripe::CardError => e
     flash[:error] = e.message

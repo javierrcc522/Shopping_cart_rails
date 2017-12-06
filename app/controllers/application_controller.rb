@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
+    
     if session[:order_id]
       Order.find(session[:order_id])
     else
@@ -24,10 +25,11 @@ class ApplicationController < ActionController::Base
           Order.new(:user_id => current_user.id, :status => 'active')
         end
       else
-        Order.new
+        Order.new(:status => 'active')
       end
     end
   end
+
   protected
   def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_in, keys: [:username, :email, :password])
