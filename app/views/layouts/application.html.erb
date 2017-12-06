@@ -17,6 +17,7 @@
         <a class="navbar-brand  ml-auto"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></a>
       <% else %>
         <a class="navbar-brand ml-auto"><%= link_to 'Login', new_user_session_path %></a>
+        <li><%= current_order.order_items.collect { |item| item.quantity }.sum %></li>
       <% end %>
     </nav>
     <div class='container'>
