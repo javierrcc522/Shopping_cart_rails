@@ -1,5 +1,6 @@
 <h1>store</h1>
 
+<%= link_to 'Items in Cart', cart_path %>
 <% @products.each do |product| %>
  <p><%= product.name %> | <%= number_to_currency product.price %>
  <%= form_for @order_item do |f| %>

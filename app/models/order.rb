@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
-
   has_many :order_items
+
   before_save :update_total
   before_create :update_status
 
@@ -8,6 +8,7 @@ class Order < ApplicationRecord
   def calculate_total
     self.order_items.collect { |item| item.product.price * item.quantity }.sum
   end
+
 
   private
 
