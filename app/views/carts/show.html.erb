@@ -1,19 +1,24 @@
-<h1>Your cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></h1>
+<h1>Your Cart <i class="fa fa-cart-plus" aria-hidden="true"></i></h1>
 
 <% if @order_items.any? %>
-  <% @order_items.each do |item| %>
+  <% @order_items.sort.each do |item| %>
     <p><%= item.product.name %> | <%= link_to "Delete", order_item_path(item), :data => {:confirm => "You sure?", :method => "delete"} %></p>
-    <p> Unit Price: <%= number_to_currency item.product.price %> | Quantity: <%= item.quantity %></p>
-      <%= form_for item do |f| %>
-        <% f.hidden_field :update_by, value: 1 %>
+    <p> Unit Price: <%= number_to_currency item.product.price %> | Quantity: <%= item.quantity %>| Total Price: <%= number_to_currency (item.product.price * item.quantity) %></p>
 
-        <%= button_tag type:"submit", class: "cart_quantity_button" do %>
-          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+
+      <%= form_for (item) do |f| %>
+        <% button_tag type:"submit", :value => item.quantity.to_i + 1, class: "cart_quantity_button" do %>
+          <p><i class="fa fa-plus-circle" aria-hidden="true"></i></p>
         <% end %>
       <% end %>
 
-       | Total Price: <%= number_to_currency (item.product.price * item.quantity) %>
-    </p>
+      <%= form_for (item) do |f| %>
+        <% button_tag type:"submit", :value => item.quantity.to_i - 1, class: "cart_quantity_button" do %>
+          <p><i class="fa fa-minus-circle" aria-hidden="true"></i></p>
+        <% end %>
+      <% end %>
+
+
   <% end %>
   <p>Your Total: <%= number_to_currency current_order.total_price %></p>
 <% else %>

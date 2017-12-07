@@ -14,14 +14,21 @@
       <% if current_user %>
         <a class="navbar-brand"><%= link_to 'Admin', rails_admin_path %></a>
 
-        <a class="navbar-brand  ml-auto"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></a>
-        <li><%= current_order.order_items.collect { |item| item.quantity }.sum %></li>
+        <a class="navbar-brand  ml-auto"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></a>|
+        <h4><%= current_order.order_items.collect { |item| item.quantity }.sum %></h4>|
+        <%= link_to cart_path do %>
+          <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i></h4>
+        <% end %>
       <% else %>
-        <a class="navbar-brand ml-auto"><%= link_to 'Login', new_user_session_path %></a>
-        <li><%= current_order.order_items.collect { |item| item.quantity }.sum %></li>
+        <a class="navbar-brand ml-auto"><%= link_to 'Login', new_user_session_path %></a>|
+        <h4><%= current_order.order_items.collect { |item| item.quantity }.sum %></h4>|
+        <%= link_to cart_path do %>
+          <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i></h4>
+        <% end %>
       <% end %>
     </nav>
     <div class='container'>
+
     <div id="flash">
       <%= flash[:notice] %>
     </div>

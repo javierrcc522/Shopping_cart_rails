@@ -3,7 +3,10 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
 
   before_save :update_total
-  # before_create :update_status
+
+  scope :sort, -> {
+    order(product_id: :desc)
+  }
 
 
 
