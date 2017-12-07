@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
 
   before_save :update_total
-  before_create :update_status
+  # before_create :update_status
 
 
 
@@ -18,11 +18,11 @@ class Order < ApplicationRecord
 
   private
 
-  def update_status
-    if self.status == nil?
-      self.status = "In progress"
-    end
-  end
+  # def update_status
+  #   if self.status == nil?
+  #     self.status = "In progress"
+  #   end
+  # end
 
   def update_total
     self.total_price = calculate_total

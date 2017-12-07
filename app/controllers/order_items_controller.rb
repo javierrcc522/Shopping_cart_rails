@@ -37,7 +37,12 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-    
+    @order = current_order
+    @item = OrderItem.find(params[:id])
+    binding.pry
+    @item.update(:quantity=> @item.quantity += 1)
+    @item.save
+    redirect_to cart_path
   end
 
   private
