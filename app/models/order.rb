@@ -14,18 +14,9 @@ class Order < ApplicationRecord
     self.order_items.collect { |item| item.product.price * item.quantity }.sum
   end
 
-  # def associate_user
-  #   self.user_id =
-  # end
 
 
   private
-
-  # def update_status
-  #   if self.status == nil?
-  #     self.status = "In progress"
-  #   end
-  # end
 
   def update_total
     self.total_price = calculate_total
