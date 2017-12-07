@@ -14,11 +14,11 @@ class OrderItemsController < ApplicationController
     end
     if @order.save
       session[:order_id] = @order.id
-        flash[:notice] = "This product has been added to your order."
-      redirect_to root_path
+        flash[:notice] = "Product has been added to your order."
+      redirect_to cart_path
     else
-      flash[:notice] = "There were some errors"
-      redirect_to root_path
+      flash[:notice] = "Please add items"
+      redirect_to cart_path
     end
   end
 
@@ -28,7 +28,7 @@ class OrderItemsController < ApplicationController
     @item.destroy
     if @order.save
       session[:order_id] = @order.id
-        flash[:notice] = "This product has been removed from your order."
+        flash[:notice] = "Product has been removed from your order."
       redirect_to cart_path
     else
       flash[:notice] = "There were some errors"
@@ -39,9 +39,8 @@ class OrderItemsController < ApplicationController
   def update
     @order = current_order
     @item = OrderItem.find(params[:id])
-    binding.pry
-    @item.update(:quantity=> @item.quantity += 1)
-    @item.save
+    @item.update(:quantity => @item.quantity + 1)
+    @item.save!
     redirect_to cart_path
   end
 
