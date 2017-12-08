@@ -21,7 +21,7 @@
         <% end %>
       <% else %>
         <a class="navbar-brand ml-auto"><%= link_to 'Login', new_user_session_path %></a>|
-        <span id="items-in-cart"><%= items_in_cart %></span>
+        <span id="items-in-cart"><%= items_in_cart %></span>|
         <%= link_to cart_path do %>
           <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i></h4>
         <% end %>

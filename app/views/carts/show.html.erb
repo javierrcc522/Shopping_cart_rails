@@ -7,13 +7,13 @@
     <p> Unit Price: <%= number_to_currency item.product.price %> | Quantity: <%= item.quantity %>| Total Price: <%= number_to_currency (item.product.price * item.quantity) %></p>
 
 
-    <%= form_for (item), :remote => true do |f| %>
+    <%= form_for (item) do |f| %>
     <% button_tag type:"submit", :value => item.quantity.to_i + 1, class: "cart_quantity_button" do %>
     <p><i class="fa fa-plus-circle" aria-hidden="true"></i></p>
     <% end %>
     <% end %>
 
-    <%= form_for (item), :remote => true do |f| %>
+    <%= form_for (item) do |f| %>
     <% button_tag type:"submit", :value => item.quantity.to_i - 1, class: "cart_quantity_button" do %>
     <p><i class="fa fa-minus-circle" aria-hidden="true"></i></p>
     <% end %>

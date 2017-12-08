@@ -36,7 +36,6 @@ class OrderItemsController < ApplicationController
       end
     else
       flash[:notice] = "There were some errors"
-      # redirect_to cart_path
       respond_to do |format|
         format.html { redirect_to cart_path }
         format.js { render 'carts/destroy' }
@@ -50,11 +49,7 @@ class OrderItemsController < ApplicationController
     @item.update(:quantity => params[:button])
     @item.save
     @order.save
-    # redirect_to cart_path
-    respond_to do |format|
-      format.html { redirect_to cart_path }
-      format.js
-    end
+    redirect_to cart_path
   end
 
   private
