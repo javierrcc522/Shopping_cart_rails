@@ -29,10 +29,18 @@ class OrderItemsController < ApplicationController
     if @order.save
       session[:order_id] = @order.id
         flash[:notice] = "Product has been removed from your order."
-      redirect_to cart_path
+      @total = current_order.total_price
+      respond_to do |format|
+        format.html { redirect_to cart_path }
+        format.js { render 'carts/destroy' }
+      end
     else
       flash[:notice] = "There were some errors"
-      redirect_to cart_path
+      # redirect_to cart_path
+      respond_to do |format|
+        format.html { redirect_to cart_path }
+        format.js { render 'carts/destroy' }
+      end
     end
   end
 
@@ -42,7 +50,11 @@ class OrderItemsController < ApplicationController
     @item.update(:quantity => params[:button])
     @item.save
     @order.save
-    redirect_to cart_path
+    # redirect_to cart_path
+    respond_to do |format|
+      format.html { redirect_to cart_path }
+      format.js
+    end
   end
 
   private
